@@ -37,7 +37,7 @@ const Login: React.FC = () => {
   const handleLogin = async (formData: FormValues) => {
     try {
       const res = await authService.login(formData);
-      console.log(res);
+      console.log(res); 
       if (res.status === 200) {
         toast.success(res.message);
         reset();

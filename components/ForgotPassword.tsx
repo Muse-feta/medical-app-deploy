@@ -7,6 +7,7 @@ import React from "react";
 import { toast, Toaster } from "sonner";
 import form_bg from "@/asset/img/bg/contact_form_bg.png";
 import authService from "@/services/auth.service";
+import { AxiosResponse } from "axios";
 
 const ForgotPassword = () => {
   const [email, setEmail] = React.useState("");
@@ -21,12 +22,18 @@ const ForgotPassword = () => {
     }
 
     try {
-      const res = await authService.forgotPassword(email);
+      const res: AxiosResponse<any> | undefined =
+        await authService.forgotPassword(email);
       console.log(res);
-      if (res.status === 200) {
-        toast.success(res.message);
+
+      if (res && res.status === 200) {
+        toast.success(
+          res.data.message || "Password reset email sent successfully"
+        );
+      } else if (res) {
+        toast.error(res.data.message || "Failed to send password reset email");
       } else {
-        toast.error(res.message);
+        toast.error("No response from the server");
       }
     } catch (error) {
       console.log("Error", error);

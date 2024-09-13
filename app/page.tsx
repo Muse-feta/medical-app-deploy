@@ -7,6 +7,7 @@ import Hero from "@/components/Hero";
 import Process from "@/components/Process";
 import Services from "@/components/Services";
 import WhyChoose from "@/components/WhyChoose";
+// import WhyChoose from "@/components/WhyChNoose";
 
 import Image from "next/image";
 
